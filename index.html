@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Поиск направлений СВФУ</title>
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .toggle-icon {
+            transition: transform 0.3s ease;
+        }
+        .toggle-icon.rotated {
+            transform: rotate(180deg);
+        }
+        .uchp-content {
+            transition: max-height 0.3s ease;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 font-sans">
+    <div class="container mx-auto p-6 max-w-6xl">
+        <h1 class="text-3xl font-bold text-center mb-6">Поиск образовательных программ СВФУ 2025-2026</h1>
+
+        <!-- Форма для ввода баллов -->
+        <div class="bg-white p-6 rounded-lg shadow-md mb-6">
+            <h2 class="text-xl font-semibold mb-4">Введите Ваши баллы ЕГЭ</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <!-- Поля ввода (оставлены без изменений) -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Русский язык</label>
+                    <input type="number" id="russian" class="mt-1 block w-full p-2 border rounded-md" min="0" max="100" />
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Литература</label>
+                    <input type="number" id="literature" class="mt-1 block w-full p-2 border rounded-md" min="0" max="100" />
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Математика</label>
+                    <input type="number" id="math" class="mt-1 block w-full p-2 border rounded-md" min="0" max="100" />
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Физика</label>
+                    <input type="number" id="physics" class="mt-1 block w-full p-2 border rounded-md" min="0" max="100" />
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Информатика</label>
+                    <input type="number" id="informatics" class="mt-1 block w-full p-2 border rounded-md" min="0" max="100" />
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Биология</label>
+                    <input type="number" id="biology" class="mt-1 block w-full p-2 border rounded-md" min="0" max="100" />
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Химия</label>
+                    <input type="number" id="chemistry" class="mt-1 block w-full p-2 border rounded-md" min="0" max="100" />
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">География</label>
+                    <input type="number" id="geography" class="mt-1 block w-full p-2 border rounded-md" min="0" max="100" />
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Обществознание</label>
+                    <input type="number" id="social" class="mt-1 block w-full p-2 border rounded-md" min="0" max="100" />
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">История</label>
+                    <input type="number" id="history" class="mt-1 block w-full p-2 border rounded-md" min="0" max="100" />
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Иностранный язык</label>
+                    <input type="number" id="foreign" class="mt-1 block w-full p-2 border rounded-md" min="0" max="100" />
+                </div>
+                <div class="flex items-center">
+                    <label for="include_extra" class="mr-4 text-sm font-medium text-gray-700 select-none">Включить направления с доп. экзаменами</label>
+                    <label class="relative inline-flex items-center w-10 h-6 cursor-pointer">
+                        <input type="checkbox" id="include_extra" class="sr-only peer" />
+                        <div class="w-full h-full bg-gray-300 rounded-full transition-colors peer-checked:bg-green-500"></div>
+                        <span class="absolute left-0.5 top-0.5 w-5 h-5 bg-white rounded-full shadow transition-transform peer-checked:translate-x-4"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Переключатели -->
+        <div class="bg-white p-6 rounded-lg shadow-md mb-6">
+            <h2 class="text-xl font-semibold mb-4">Выбрать форму обучения</h2>
+            <div class="space-y-4">
+                <!-- Очная форма-->
+                <div class="flex items-center">
+                    <label for="full_time" class="mr-4 text-sm font-medium text-gray-700 select-none">Очная форма</label>
+                    <label class="relative inline-flex items-center w-10 h-6 cursor-pointer">
+                        <input type="checkbox" id="full_time" class="sr-only peer" checked />
+                        <div class="w-full h-full bg-gray-300 rounded-full transition-colors peer-checked:bg-green-500"></div>
+                        <span class="absolute left-0.5 top-0.5 w-5 h-5 bg-white rounded-full shadow transition-transform peer-checked:translate-x-4"></span>
+                    </label>
+                </div>
+                <!-- Очно-заочная форма-->
+                <div class="flex items-center">
+                    <label for="part_time" class="mr-4 text-sm font-medium text-gray-700 select-none">Очно-заочная форма</label>
+                    <label class="relative inline-flex items-center w-10 h-6 cursor-pointer">
+                        <input type="checkbox" id="part_time" class="sr-only peer" />
+                        <div class="w-full h-full bg-gray-300 rounded-full transition-colors peer-checked:bg-green-500"></div>
+                        <span class="absolute left-0.5 top-0.5 w-5 h-5 bg-white rounded-full shadow transition-transform peer-checked:translate-x-4"></span>
+                    </label>
+                </div>
+                <!-- Заочная форма-->
+                <div class="flex items-center">
+                    <label for="correspondence" class="mr-4 text-sm font-medium text-gray-700 select-none">Заочная форма</label>
+                    <label class="relative inline-flex items-center w-10 h-6 cursor-pointer">
+                        <input type="checkbox" id="correspondence" class="sr-only peer" />
+                        <div class="w-full h-full bg-gray-300 rounded-full transition-colors peer-checked:bg-green-500"></div>
+                        <span class="absolute left-0.5 top-0.5 w-5 h-5 bg-white rounded-full shadow transition-transform peer-checked:translate-x-4"></span>
+                    </label>
+                </div>
+                <!-- Включить направления с доп. экзаменами -->
+                
+            </div>
+        </div>
+
+        <!-- Кнопка поиска -->
+        <button onclick="searchDirections()" class="w-full bg-blue-500 text-white p-3 rounded-md hover:bg-blue-600">Найти направления</button>
+
+        <!-- Результаты -->
+        <div id="results" class="mt-6"></div>
+    </div>
+
+    <script>
+        // Словарь полных названий учебных подразделений
+        const uchpFullNames = {
+            "АДФ": "Автодорожный факультет",
+            "ГИ": "Горный институт",
+            "ГРФ": "Геологоразведочный факультет",
+            "ИЕН": "Институт естественных наук",
+            "ИЗФиР": "Институт зарубежной филологии и регионоведения",
+            "ИМИ": "Институт математики и информатики",
+            "ИП": "Институт психологии",
+            "ИТИ": "Инженерно-технический институт",
+            "ИФ": "Исторический факультет",
+            "ИФКиС": "Институт физической культуры и спорта",
+            "ИЯКН": "Институт языков и культуры народов Северо-Востока РФ",
+            "МИ": "Медицинский институт",
+            "ПИ": "Педагогический институт",
+            "ФЛФ": "Филологический факультет",
+            "ФТИ": "Физико-технический институт",
+            "ФЭИ": "Финансово-экономический институт",
+            "ЮФ": "Юридический факультет",
+            "МПТИ": "Политехнический институт (филиал) СВФУ в г. Мирном",
+            "НТИ": "Технический институт (филиал) СВФУ в г. Нерюнгри",
+            "ЧФ": "Чукотский филиал СВФУ г. Анадырь"
+        };
+
+        function getFullUchpName(shortName) {
+            return uchpFullNames[shortName] || shortName;
+        }
+
+        async function searchDirections() {
+            const scores = {
+                "Русский язык": parseInt(document.getElementById('russian').value) || null,
+                "Литература": parseInt(document.getElementById('literature').value) || null,
+                "Математика": parseInt(document.getElementById('math').value) || null,
+                "Физика": parseInt(document.getElementById('physics').value) || null,
+                "Информатика": parseInt(document.getElementById('informatics').value) || null,
+                "Биология": parseInt(document.getElementById('biology').value) || null,
+                "Химия": parseInt(document.getElementById('chemistry').value) || null,
+                "География": parseInt(document.getElementById('geography').value) || null,
+                "Обществознание": parseInt(document.getElementById('social').value) || null,
+                "История": parseInt(document.getElementById('history').value) || null,
+                "Иностранный язык": parseInt(document.getElementById('foreign').value) || null,
+            };
+
+            // Удаляем null значения
+            const filteredScores = Object.fromEntries(
+                Object.entries(scores).filter(([_, v]) => v !== null)
+            );
+
+            const data = {
+                scores: filteredScores,
+                full_time: document.getElementById('full_time').checked,
+                part_time: document.getElementById('part_time').checked,
+                correspondence: document.getElementById('correspondence').checked,
+                include_extra: document.getElementById('include_extra').checked,
+            };
+
+            try {
+                const response = await fetch('http://localhost:8000/get_directions.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data),
+                });
+                const result = await response.json();
+                displayResults(result);
+            } catch (error) {
+                console.error('Ошибка:', error);
+                document.getElementById('results').innerHTML =
+                    '<p class="text-red-500">Ошибка при получении данных. Попробуйте позже.</p>';
+            }
+        }
+
+        function toggleUchp(uchpId) {
+            const content = document.getElementById(`uchp-content-${uchpId}`);
+            const icon = document.getElementById(`uchp-icon-${uchpId}`);
+            
+            if (content.classList.contains('max-h-0')) {
+                content.classList.remove('max-h-0');
+                content.classList.add('max-h-[9999px]');
+                icon.classList.add('rotated');
+            } else {
+                content.classList.add('max-h-0');
+                content.classList.remove('max-h-[9999px]');
+                icon.classList.remove('rotated');
+            }
+        }
+
+        function displayResults(data) {
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = '';
+
+            const scoresStr = Object.entries(data.scores)
+                .map(([subject, score]) => `${subject}: ${score}`)
+                .join(', ');
+
+            if (data.results.length === 0) {
+                resultsDiv.innerHTML = `
+                    <div class="bg-red-100 p-4 rounded-lg">
+                        <p class="text-red-700">❌ Нет подходящих направлений для ваших баллов и выбранных форм обучения.</p>
+                        <p class="text-gray-700 mt-2">Ваши баллы: ${scoresStr}</p>
+                        <p class="text-gray-700">Рекомендации: Проверьте баллы или выберите другие формы обучения.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            let html = `
+                <div class="bg-green-100 p-4 rounded-lg mb-4">
+                    <p class="text-green-700">✅ Найдено подходящих направлений: ${data.results.reduce((acc, uchp) => acc + uchp.directions.length, 0)}</p>
+                    <p class="text-gray-700 mt-2">Ваши баллы: ${scoresStr}</p>
+                </div>
+            `;
+
+            data.results.forEach((uchp, index) => {
+                const fullUchpName = getFullUchpName(uchp.uchp_name);
+                html += `
+                    <div class="bg-white rounded-lg shadow-md mb-4 overflow-hidden">
+                        <div 
+                            class="flex justify-between items-center p-4 cursor-pointer bg-blue-50 hover:bg-blue-100"
+                            onclick="toggleUchp(${index})"
+                        >
+                            <h3 class="font-semibold text-lg">${fullUchpName}</h3>
+                            <svg 
+                                id="uchp-icon-${index}" 
+                                class="toggle-icon w-6 h-6 text-gray-500" 
+                                fill="none" 
+                                viewBox="0 0 24 24" 
+                                stroke="currentColor"
+                            >
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </div>
+                        <div 
+                            id="uchp-content-${index}" 
+                            class="uchp-content max-h-0"
+                        >
+                            <div class="p-4 space-y-4">
+                                ${uchp.directions.map(direction => {
+                                    // Желаемый порядок: Очная, Очно-заочная, Заочная
+                                    const order = ['Очная форма', 'Очно-заочная форма', 'Заочная форма'];
+                                    const sortedPlaces = Object.entries(direction.places)
+                                        .sort(([formA], [formB]) => order.indexOf(formA) - order.indexOf(formB))
+                                        .map(([form, count]) => `<li class="ml-4">${form}: ${count}</li>`)
+                                        .join('');
+
+                                    return `
+                                        <div class="border-b pb-4 last:border-b-0 last:pb-0">
+                                            <p><strong class="text-blue-600">${direction.code}</strong> - ${direction.program}</p>
+                                            <div class="mt-2">
+                                                <p class="text-sm font-medium">Минимальные баллы:</p>
+                                                <pre class="text-sm text-gray-600 whitespace-pre-wrap break-words bg-gray-50 p-2 rounded">${direction.exams}</pre>
+                                            </div>
+                                            <div class="mt-2">
+                                                <p class="text-sm font-medium">Количество мест:</p>
+                                                <ul class="text-sm text-gray-700">${sortedPlaces}</ul>
+                                            </div>
+                                        </div>
+                                    `;
+                                }).join('')}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            html += `
+                <p class="text-gray-600 mt-4">Примечание: Для направлений с дополнительными испытаниями требуется сдать экзамен в вузе.</p>
+            `;
+            resultsDiv.innerHTML = html;
+        }
+    </script>
+</body>
+</html>
